@@ -17,17 +17,17 @@ function cDB(confs){
 				for (var j=0;j<_field.length;j++){
 					_sqlField += ',`'+_field[j].name+'` '+_field[j].type;
 				}
-
+	
 				_sql += _sqlField.substr(1)+");";
 				
 				this.query(_sql,callback,null,null);
 			}
-
+	
 			return true;
 		},
-        __: function(s){
-            return s;
-        },
+		__: function(s){
+			return s;
+		},
 		getResult:function(){
 			return this._response;
 		},
@@ -50,7 +50,6 @@ function cDB(confs){
 			}else if(typeof(_er) == 'undefined'){
 				err += _er+'; ';
 			}
-			echo(err);
 			//if(callback) callback();
 			return false;
 		},
@@ -71,7 +70,6 @@ function cDB(confs){
 			
 			this._db.transaction(function(tx){
 				tx.executeSql(_query,function(res){
-					echo('finish execute sql ' + _query , 300);
 					callback(this,res);
 				},self.callback_error);
 			},function(){return false;}, _genErrorCallback(_query));
@@ -86,7 +84,7 @@ function cDB(confs){
 					__values.push(_field[j].value);
 				}
 			}
-
+	
 			for(var i=0;i<clauses.length;i++){
 				__clause += ',`'+clauses[i].name+'`=?';
 				__values.push(clauses[i].value);
@@ -101,7 +99,7 @@ function cDB(confs){
 			if(typeof(clauses) != 'undefined'){
 				for(var i=0;i<clauses.length;i++)
 					__clause += ',`'+clauses[i].name+'`="'+escape(clauses[i].value)+'"';
-				echo('doing clauses'); 
+
 				if(clauses.length > 0)
 					__sql += ' WHERE ' + ((__clause!='')?__clause.substr(1):'FALSE');
 			}
@@ -126,7 +124,7 @@ function cDB(confs){
 						__qs.push('?');
 						__values.push(_field[j].value ? _field[j].value : '');
 					}
-
+	
 					var _sql = 'INSERT INTO '+tbl+' ('+__field.substr(1)+') VALUES('+__qs.join(',')+');';
 					var _query = [];
 					if(__values)
@@ -138,7 +136,7 @@ function cDB(confs){
 				if(callback) callback();
 				return true;
 			}, self.callback_error);
-
+	
 			return true;
 		},
 		insert:function(tbl,rows,callback){
