@@ -77,7 +77,7 @@ function cDB(confs){
 		update:function(tbl,sets,clauses,callback){
 			var __sql = 'UPDATE '+tbl, _field = null, __set = '', __clause = '',__values=[];
 			
-			for(var i=0;i<sets.length;i++){0
+			for(var i=0;i<sets.length;i++){
 				_field = sets[i];
 				for(var j=0;j<_field.length;j++){
 					__set += ',`'+_field[j].name+'`=?';
