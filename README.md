@@ -2,13 +2,14 @@ This is my Javascript Class for HTML5 Databases connection to SQLite. I use this
 
 How To Use It
 -------------
-/* Create or open database with 'websiteDB' as database name and 'website DB' as title, and database site is 5MB */
-/* I'm not using 1024 for the size multiplying because i don't want to be near at the margin size                */
-var db = new cDB({_db:window.openDatabase(&quot;websiteDB&quot;, &quot;&quot;, &quot;website DB&quot;, 5*1000*1000)});
+Create or open database with 'websiteDB' as database name and 'website DB' as title, and database site is 5MB I'm not using 1024 for the size multiplying because i don't want to be near at the margin size
+
+    var db = new cDB({_db:window.openDatabase(&quot;websiteDB&quot;, &quot;&quot;, &quot;website DB&quot;, 5*1000*1000)});
 
 
 ### Table Creation:
 dbTable is database structure in this example, and contains 2 tables 'foo' and 'boo' and also the table structure in table properties
+
     var dbTable = [
       {table:'foo',properties: [
         {name:'foo_id', type: 'INT PRIMARY KEY ASC'},
@@ -23,6 +24,7 @@ dbTable is database structure in this example, and contains 2 tables 'foo' and '
     ];
 
 this line is checking if the database exist or not and then create the database structure. Table will be created if the table is not exist yet, if the table already exist, it will skip the table and continue with others tables
+
     if(!db.check(dbTable)){
       db = false;
       alert('Failed to cennect to database.');
@@ -40,9 +42,11 @@ this line is checking if the database exist or not and then create the database 
     ]);
 
 Insert without callback
+
     db.insert('foo',row);
 
 Insert and return callback
+
     db.insert('foo',row,function(tx,res){
       console.log('Insert ID: '+res.insertId);
     });
