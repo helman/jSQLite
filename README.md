@@ -69,6 +69,7 @@ SQLite is not accepting more than 1 line statement, that is the reason why we no
     db.multiInsert('boo',rows,function(){alert('insertion done');});
 
 Or, if you want to combine that two functions, just put if condition:
+
     if(rows.length>=2){
       db.multiInsert('boo',rows,function(){alert('insertion done');});
     }else{
@@ -95,4 +96,5 @@ Or, if you want to combine that two functions, just put if condition:
     });
 
 Cheers,
+
 helman
